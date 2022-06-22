@@ -282,7 +282,9 @@ console.log(oddChecker)
 
 //CODE HERE
 
-let bestMovie = (movieTitle) => {return `${movieTitle} is the best movie ever!`}
+// Both lines of code function the same way but the return can't function without the curlies
+// let bestMovie = (movieTitle) => {return `${movieTitle} is the best movie ever!`}
+let bestMovie = (movieTitle) => `${movieTitle} is the best movie ever!`
 
 console.log(bestMovie("Bond"))
 
@@ -327,9 +329,19 @@ let loser = 'Glimmer'
 
 //CODE HERE
 
-function theEliminator(contestants,loser) {
-  
+function theEliminator(people, noWin) {
+  for (i=0; i<people.length-1; i++) {
+    if (people[i] === noWin) {
+      people.splice(i,1)
+    } else {
+      continue
+    }
+  return people
+  }
 }
+
+console.log(theEliminator(contestants,loser))
+
 
 ////////////////// PROBLEM 17 ////////////////////
 let sampleString = "Hi, my name is Kylo."
@@ -339,6 +351,12 @@ let sampleString = "Hi, my name is Kylo."
 */
 
 //CODE HERE
+
+function stringPrint(x) {
+  console.log(x.toUpperCase())
+}
+
+stringPrint(sampleString)
 
 
 ////////////////// PROBLEM 18 ////////////////////
@@ -352,6 +370,27 @@ let sampleString = "Hi, my name is Kylo."
   return 'must provide a valid email address'
 */
 
+function emailCheck(email) {
+  email = String(email)
+  email = email.replace(/\s+/g,'')
+  // console.log(email)
+  for (i=0; i<email.length-1; i++) {
+    if (email[i] === "@") {
+      return "E-mail verified"
+    } else {
+      continue
+    }
+  }
+  return "Must provide a valid email address."
+}
+
+// console.log(emailCheck("Yup@wow.com"))
+// console.log(emailCheck("totesnotanemail.com"))
+// console.log(emailCheck("even more not an email .com    "))
+// console.log(emailCheck(32))
+
+
+
 ////////////////// PROBLEM 19 ////////////////////
 /*
   Write a function, naming it whatever you believe to be appropriate, that buys as many chocolate frogs as possible with a certain amount of gold. Each chocolate frog costs 3 gold. Your function should take in a single parameter, which is the amount of gold you are willing to spend. Your function should return a total amount of chocolate frogs you were able to purchase.
@@ -359,6 +398,16 @@ let sampleString = "Hi, my name is Kylo."
 */
 
 //CODE HERE
+
+function getAllTheFrogs (moneys) {
+  let frogCost = 3
+  let frogAmount = Math.floor(moneys/frogCost)
+  return frogAmount
+}
+
+let totalFrogs = getAllTheFrogs(281)
+console.log(totalFrogs)
+let totalFrogs2 = console.log(getAllTheFrogs(300))
 
 
 ////////////////// PROBLEM 20 ////////////////////
@@ -368,30 +417,72 @@ let sampleString = "Hi, my name is Kylo."
 
 //CODE HERE
 
+// I already managed to fix it because I noticed the issue before I read problem 20. I'm going to leave this empty as the issue is non-existent with the original code and it was tested and verified to be working.
 
 ////////////////// PROBLEM 21 ////////////////////
-let sampleArray = [0,1,2,3,4,7,5,6,8,9]
+let sampleArray = [0,1,2,3,4,5,7,6,8,9]
+// let sampleArray = [0,1,2,3,4,5,6,8,9]
 /*
   Write a function that takes in an array of numbers as an argument. In the body of the function, write logic to determine if the array is in ascending order. The function should return true, if it is sorted in ascending order, false if it is not. Create a variable, `arrayIsAscending` and set it equal to your function invoked. Use the sample array to test this function.
 */
 
-//CODE HERE
+// //CODE HERE
 
+// let numberExtra = 5
+// for (i=0; i <= numberExtra; i++) {
+//   console.log("here")
+// }
 
-////////////////// PROBLEM 22 ////////////////////
-
-let duck = "cute";
-
-function bathroom() {
-  let rubberDuck = "squeaky";
-  function bathtub() {
-    let sailorDuck = "nautical";
+function checkAscending(arrayToCheck) {   
+  for (let i = 1; i < arrayToCheck.length-1; i++) { 
+    if (arrayToCheck[i] < arrayToCheck[i-1]) {
+      return false
+    } 
   }
+  return true
 }
 
-function pond() {
-  let realDuck = "fluffy";
-}
+
+arrayIsAscending = console.log(checkAscending(sampleArray))
+
+// const isAscending = arr => 
+// {
+//   //let flag; //boolean check
+//   for(let i = 0; i < arr.length-1; i++)
+//   {
+//     if(arr[i] < arr[i+1] || arr[i+1] === arr[i])
+//     {
+//      // flag = true;
+//     }
+//     else
+//     {
+//     //  flag = false;
+//       // break;
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
+// let arrayIsAscending = isAscending(sampleArray);
+// console.log(arrayIsAscending)
+
+
+
+// ////////////////// PROBLEM 22 ////////////////////
+
+// let duck = "cute";
+
+// function bathroom() {
+//   let rubberDuck = "squeaky";
+//   function bathtub() {
+//     let sailorDuck = "nautical";
+//   }
+// }
+
+// function pond() {
+//   let realDuck = "fluffy";
+// }
 
 /*
   There are 4 variables above: duck, rubberDuck, sailorDuck and realDuck.
@@ -400,13 +491,15 @@ function pond() {
 */
 
 //This array should contain the variable names (as strings) accessible in the global scope.
-let globalScope = []
+let globalScope = ["duck"]
 
 //This array should contain the variable names (as strings) accessible in the bathroom function.
-let bathroomScope = []
+let bathroomScope = ["rubberDuck"]
 
 //This array should contain the variable names (as strings) accessible in the bathtub function.
-let bathtubScope = []
+let bathtubScope = ["sailorDuck"]
 
 //This array should contain the variable names (as strings) accessible in the pond function.
-let pondScope = []
+let pondScope = ["realDuck"]
+
+console.log(globalScope,bathroomScope,bathtubScope,pondScope)
